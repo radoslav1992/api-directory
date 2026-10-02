@@ -1,0 +1,7 @@
+---
+const {base,total,current,pageSize=36}=Astro.props;
+const count=Math.max(1,Math.ceil(total/pageSize));
+const href=n=>n===1?base:base+`page/${n}/`;
+const numbers=[...new Set([1,count,...Array.from({length:5},(_,i)=>current-2+i).filter(n=>n>0&&n<=count)])].sort((a,b)=>a-b);
+---
+<nav id="pagination" class="pagination" aria-label="Results pages">{current>1&&<a href={href(current-1)} data-page={current-1} aria-label="Previous page">←</a>}{numbers.map((n,i)=><>{i>0&&n-numbers[i-1]>1&&<span>…</span>}<a href={href(n)} data-page={n} aria-current={n===current?'page':undefined}>{n}</a></>)}{current<count&&<a href={href(current+1)} data-page={current+1} aria-label="Next page">→</a>}</nav>

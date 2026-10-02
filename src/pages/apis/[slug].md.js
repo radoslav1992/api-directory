@@ -1,0 +1,3 @@
+import {reviewed} from '../../lib/catalog';
+export function getStaticPaths(){return reviewed.map(api=>({params:{slug:api.slug},props:{api}}));}
+export function GET({props,site}){const a=props.api;return new Response(`# ${a.name} API\n\n${a.description}\n\n- Canonical guide: ${site.origin}/apis/${a.slug}/\n- Category: ${a.category}\n- Authentication: ${a.auth}\n- Access: ${a.plan}\n- Documentation reviewed: 2026-09-16 (not live uptime testing)\n- Official documentation: ${a.docs}\n\n## What you could build\n${a.use}\n\n## Usage conditions\n${a.note}\n\n## Example endpoint\n${a.endpoint}\n\nBrowser requests require provider CORS support. Confirm current access, pricing, and usage rights with the provider.\n`,{headers:{'Content-Type':'text/markdown; charset=utf-8'}});}

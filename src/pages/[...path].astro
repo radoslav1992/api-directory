@@ -1,0 +1,7 @@
+---
+import Directory from '../components/Directory.astro';
+import {directoryRoutes} from '../lib/catalog';
+export function getStaticPaths(){return directoryRoutes().map(route=>({params:{path:route.path.slice(1,-1)},props:{route}}));}
+const {route}=Astro.props;
+---
+<Directory route={route}/>

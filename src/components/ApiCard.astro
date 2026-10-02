@@ -1,0 +1,4 @@
+---
+const {api:a}=Astro.props;
+---
+<article class="api-card"><div class="card-top"><span class:list={['api-mark',a.color]} aria-hidden="true">{a.mark}</span><span class:list={['review-tag',a.review==='reviewed'&&'is-reviewed']}>{a.review==='reviewed'?'Docs reviewed':'Community listing'}</span></div><div class="card-copy"><span class="small-label">{a.category}</span><h3><a href={`/apis/${a.slug}/`}>{a.name}<span aria-hidden="true">↗</span></a></h3><p>{a.description}</p></div><div class="card-meta"><span class:list={['auth-tag',a.auth==='No key'&&'no-key']}>{a.auth==='No key'?'◇ ':''}{a.review==='catalog'?'Reported: ':''}{a.auth}</span><span>{a.plan}</span></div></article>

@@ -1,0 +1,5 @@
+---
+import Base from '../../layouts/Base.astro';
+import {guides} from '../../lib/guides';
+---
+<Base title="Practical API integration guides" description="Learn how to choose a public API, understand CORS, and test authentication before building an integration."><main id="main" class="wrap section"><div class="page-intro"><div class="eyebrow">KNOW BEFORE YOU BUILD</div><h1>Less trial.<br/><em>Fewer errors.</em></h1><p>Practical context for choosing an API and understanding your first response.</p></div><div class="guide-grid">{guides.map((g,i)=><a class="guide-card" href={`/guides/${g.slug}/`}><span class="guide-number">0{i+1} / {g.label}</span><h2>{g.title}</h2><p>{g.description}</p><span class="text-link">Read the guide ↗</span></a>)}</div></main></Base>
