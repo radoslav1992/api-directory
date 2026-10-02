@@ -72,6 +72,14 @@ npm run deploy:check
 
 The generated output includes security headers, legacy URL redirects, `/robots.txt`, `/sitemap.xml`, and `/llms.txt`. After public deployment, submit `/sitemap.xml` in Search Console. This repository update does not redeploy the original Sites-hosted copy.
 
+## Example requests for community listings
+
+`sources/examples.json` holds a drafted example GET request for community-listed APIs (keyed by slug). Drafts are not published on their own: `npm run check:examples` calls each one and records the outcome in `sources/example-checks.json`, and the import step only adds an example to a page when its latest check passed for that exact URL.
+
+A check passes when the endpoint answers 2xx with data (not an HTML page), or, for examples that use the `YOUR_API_KEY` placeholder, when it answers 401 (or 400/403 with an authentication error). Redirects fail, because the playground blocks them. The checker also records whether the provider sent CORS headers, which the page uses to say whether the browser playground should work.
+
+Run the checker from a machine with normal internet access, then commit both files. Pass slugs to re-check only those: `npm run check:examples -- cat-facts-catfact-ninja`.
+
 ## Client-side API playground
 
 - Editable HTTPS endpoint, HTTP method, query parameters, headers, and JSON/text bodies.

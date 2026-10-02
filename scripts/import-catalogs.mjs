@@ -45,7 +45,10 @@ for(const a of items){const n=a.name.toLowerCase();if(merge_names.includes(n)&&s
 const checks=read('sources/link-checks.json').results;
 items=unique.filter(a=>host(a.docs)!=='iexcloud.io').map(a=>({...a,link_status:checks[a.slug]?.status??null})).filter(a=>a.review==='reviewed'||![404,410].includes(a.link_status));
 if(new Set(items.map(a=>a.slug)).size!==items.length)throw new Error('Duplicate API slugs');
+// Example requests for community entries are published only after scripts/check-examples.mjs saw them respond.
+const examples=read('sources/examples.json'),exampleChecks=fs.existsSync(new URL('sources/example-checks.json',root))?read('sources/example-checks.json').results:{};
+items=items.map(a=>{const e=examples[a.slug],c=exampleChecks[a.slug];if(a.review==='reviewed'||!e||!c?.ok||c.url!==e.url)return a;return {...a,endpoint:e.url,header:e.header||'',use:a.use||e.use||'',auth:e.auth,note:'Imported from a community catalog. Only the example request below has been tested; pricing, rate limits, and terms have not been individually checked. Confirm requirements in the provider documentation before integration.',example:{checked:c.checked,status:c.status,cors:c.cors}};});
 fs.mkdirSync(new URL('src/data/',root),{recursive:true});fs.mkdirSync(new URL('public/',root),{recursive:true});
 write('src/data/catalog.json',JSON.stringify(items));
-write('public/catalog.json',JSON.stringify(items.map(({slug,name,category,mark,color,description,auth,plan,review})=>({slug,name,category,mark,color,description,auth,plan,review}))));
-console.log(`Catalog: ${items.length} APIs, ${new Set(items.map(a=>a.category)).size} categories, ${items.filter(a=>a.review==='reviewed').length} reviewed guides.`);
+write('public/catalog.json',JSON.stringify(items.map(({slug,name,category,mark,color,description,auth,plan,review,example})=>({slug,name,category,mark,color,description,auth,plan,review,...(example&&{tested:true})}))));
+console.log(`Catalog: ${items.length} APIs, ${new Set(items.map(a=>a.category)).size} categories, ${items.filter(a=>a.review==='reviewed').length} reviewed guides, ${items.filter(a=>a.example).length} tested community examples.`);
