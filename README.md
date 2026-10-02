@@ -1,4 +1,4 @@
-# Endpoint — Astro API Directory
+# Find Public APIs
 
 A complete **Astro 7 static website**, with a redesigned landing page, searchable library, 2,112 API listings in 50 categories, 32 documentation-reviewed guides, and a browser-only request playground. No Python, database, server-side request proxy, or React/Vue runtime is required.
 
@@ -36,12 +36,12 @@ The repository is ready for **Cloudflare Workers Builds with static assets**. Wr
 | Build command | `npm run build:cloudflare` |
 | Deploy command | `npm run deploy` |
 | Node build variable | `NODE_VERSION=22` (22.12 or newer) |
-| Site origin build variable | `SITE_URL=https://YOUR-PUBLIC-HOSTNAME` |
+| Site origin build variable | Optional. Defaults to `https://findpublicapis.com` |
 
-Use your custom domain as `SITE_URL` if known. Otherwise use the exact `https://api-directory.<your-account-subdomain>.workers.dev` URL shown by Cloudflare. This is the public origin, **not** a GitHub URL or a `/library/` page. Add the variable to **build variables**, not just runtime variables. A bare hostname (`example.com`) is treated as `https://example.com`; anything else that is not a plain HTTPS origin stops the build with the rejected value in the error. Workers CI fails with a clear message if it is missing, preventing accidental canonical URLs pointing at the old Sites deployment.
+Canonical URLs, the sitemap, and structured data point at `https://findpublicapis.com` unless `SITE_URL` says otherwise. Set `SITE_URL` only for a copy served from another origin (for example a staging workers.dev URL); add it to **build variables**, not just runtime variables. A bare hostname (`example.com`) is treated as `https://example.com`; anything else that is not a plain HTTPS origin stops the build with the rejected value in the error.
 
 4. Save and deploy. Cloudflare installs dependencies from the lockfile, builds the Astro pages, validates the generated routes and indexing, then runs the pinned Wrangler to upload `dist/`.
-5. For a custom domain, add it under the Worker’s **Settings → Domains & Routes**, update `SITE_URL` if needed, and trigger a new build. Static metadata must be rebuilt when the origin changes.
+5. Add `findpublicapis.com` under the Worker’s **Settings → Domains & Routes**. If you ever move to another domain, update the default in `astro.config.mjs` (or set `SITE_URL`) and rebuild: static metadata must be rebuilt when the origin changes.
 
 `wrangler.jsonc` already declares `dist/` as the asset directory, enables the workers.dev route, enforces trailing-slash HTML URLs, and serves the real 404 page for missing routes. Do not add an SSR entry point, a Cloudflare Astro adapter, or SPA fallback.
 
@@ -55,22 +55,22 @@ Choose **Pages → Connect to Git**, select the same repository and `main`, then
 - Build command: **`npm run build:cloudflare`**
 - Build output directory: **`dist`**
 - Root directory: repository root
-- Build variables: **`NODE_VERSION=22`** and **`SITE_URL=https://YOUR-PUBLIC-HOSTNAME`**
+- Build variables: **`NODE_VERSION=22`** (`SITE_URL` is optional, as above)
 - No deploy command; Pages handles the upload.
 
-The Workers Wrangler config is not a Pages Functions config. Pages uses the static output directory selected in its dashboard. If `SITE_URL` is not set on Pages, the provided `CF_PAGES_URL` is used. Set an explicit production `SITE_URL` before moving to a custom domain.
+The Workers Wrangler config is not a Pages Functions config. Pages uses the static output directory selected in its dashboard. Preview deployments also canonicalize to `https://findpublicapis.com`, which keeps search engines on the production domain.
 
 ### Deployment checks
 
 ```sh
 npm ci
-SITE_URL=https://your-domain.com npm run build:cloudflare
+npm run build:cloudflare
 npm run deploy:check
 ```
 
 `deploy:check` validates the Wrangler configuration without publishing or requiring an API token. `npm run deploy` is the real publishing command and is run by Cloudflare after the build.
 
-The generated output includes security headers, legacy URL redirects, `/robots.txt`, `/sitemap.xml`, and `/llms.txt`. After public deployment, submit `/sitemap.xml` in Search Console. This repository update does not redeploy the original Sites-hosted copy.
+The generated output includes security headers, legacy URL redirects, `/robots.txt`, `/sitemap.xml`, and `/llms.txt`. After public deployment, submit `/sitemap.xml` in Search Console.
 
 ## Example requests for community listings
 

@@ -3,4 +3,4 @@ import {apis,pageSize} from '../../lib/catalog';
 export function getStaticPaths(){return Array.from({length:Math.ceil(apis.length/pageSize)-1},(_,i)=>({params:{number:String(i+2)}}));}
 const target=`/library/page/${Astro.params.number}/`;
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Directory page moved | Endpoint</title><meta name="robots" content="noindex,follow"/><meta http-equiv="refresh" content={`0;url=${target}`}/><link rel="canonical" href={new URL(target,Astro.site).href}/></head><body><p>This directory page has moved. <a href={target}>Continue to the API library.</a></p></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Directory page moved | Find Public APIs</title><meta name="robots" content="noindex,follow"/><meta http-equiv="refresh" content={`0;url=${target}`}/><link rel="canonical" href={new URL(target,Astro.site).href}/></head><body><p>This directory page has moved. <a href={target}>Continue to the API library.</a></p></body></html>
