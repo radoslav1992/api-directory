@@ -18,27 +18,59 @@ npm run preview
 
 The build imports the bundled catalog snapshots using Node and generates static pages into `dist/`. No provider APIs are called during builds.
 
-## Cloudflare deployment
+## Cloudflare deployment through GitHub
 
-### Cloudflare Pages (Git integration)
+The repository is ready for **Cloudflare Workers Builds with static assets**. Wrangler is pinned in `devDependencies` and the lockfile so Cloudflare uses the tested version. No GitHub Actions deployment workflow is needed: connect the repository in Cloudflare and Cloudflare deploys pushes to `main`.
 
-- Repository: `radoslav1992/api-directory`
-- Production branch: `main`
+### Recommended: Workers Git integration
+
+1. In Cloudflare, open **Workers & Pages → Create application → Import a repository** (the label may appear as **Connect to Git**).
+2. Connect GitHub and select **`radoslav1992/api-directory`**.
+3. Set these values:
+
+| Setting | Value |
+| --- | --- |
+| Worker/project name | `api-directory` — must match `wrangler.jsonc` |
+| Production branch | `main` |
+| Root directory | Repository root (`/`) |
+| Build command | `npm run build:cloudflare` |
+| Deploy command | `npm run deploy` |
+| Node build variable | `NODE_VERSION=22` (22.12 or newer) |
+| Site origin build variable | `SITE_URL=https://YOUR-PUBLIC-HOSTNAME` |
+
+Use your custom domain as `SITE_URL` if known. Otherwise use the exact `https://api-directory.<your-account-subdomain>.workers.dev` URL shown by Cloudflare. This is the public origin, **not** a GitHub URL or a `/library/` page. Add the variable to **build variables**, not just runtime variables. Workers CI fails with a clear message if it is missing, preventing accidental canonical URLs pointing at the old Sites deployment.
+
+4. Save and deploy. Cloudflare installs dependencies from the lockfile, builds the Astro pages, validates the generated routes and indexing, then runs the pinned Wrangler to upload `dist/`.
+5. For a custom domain, add it under the Worker’s **Settings → Domains & Routes**, update `SITE_URL` if needed, and trigger a new build. Static metadata must be rebuilt when the origin changes.
+
+`wrangler.jsonc` already declares `dist/` as the asset directory, enables the workers.dev route, enforces trailing-slash HTML URLs, and serves the real 404 page for missing routes. Do not add an SSR entry point, a Cloudflare Astro adapter, or SPA fallback.
+
+Cloudflare’s own Git integration supplies deployment authorization. No API credentials, Cloudflare token in GitHub, D1 database, R2 bucket, or migrations are needed. API playground credentials are entered by visitors and never configured as deployment secrets.
+
+### If you choose Cloudflare Pages instead
+
+Choose **Pages → Connect to Git**, select the same repository and `main`, then use:
+
 - Framework preset: **Astro**
-- Build command: **`npm run build`**
+- Build command: **`npm run build:cloudflare`**
 - Build output directory: **`dist`**
-- Set build environment variable **`NODE_VERSION=22`** (22.12 or newer).
-- Set build environment variable **`SITE_URL=https://your-final-domain.com`**.
+- Root directory: repository root
+- Build variables: **`NODE_VERSION=22`** and **`SITE_URL=https://YOUR-PUBLIC-HOSTNAME`**
+- No deploy command; Pages handles the upload.
 
-The existing Python build command must be replaced. No API credentials, D1 database, R2 bucket, or Cloudflare Astro adapter are required for this static app.
+The Workers Wrangler config is not a Pages Functions config. Pages uses the static output directory selected in its dashboard. If `SITE_URL` is not set on Pages, the provided `CF_PAGES_URL` is used. Set an explicit production `SITE_URL` before moving to a custom domain.
 
-### Cloudflare Workers with static assets
+### Deployment checks
 
-The included `wrangler.jsonc` config serves `dist/` with trailing-slash HTML routing and a real 404 page. In Workers Builds, use `npm run build` for the build and `npx wrangler deploy` for deployment. Configure the same Node and `SITE_URL` build variables above. Wrangler is a deployment tool; it is not an app runtime dependency.
+```sh
+npm ci
+SITE_URL=https://your-domain.com npm run build:cloudflare
+npm run deploy:check
+```
 
-`public/_headers` provides response security headers on compatible static hosts. `public/_redirects` retains legacy pagination and license URLs. Legacy `/page/N/` paths also have static redirect pages for other hosts.
+`deploy:check` validates the Wrangler configuration without publishing or requiring an API token. `npm run deploy` is the real publishing command and is run by Cloudflare after the build.
 
-The default site origin remains the previous Sites URL until `SITE_URL` is set. Use an HTTPS origin with no path. Attach the chosen custom domain in Cloudflare separately and submit `/sitemap.xml` in Search Console after public deployment. This repository update does not redeploy the original Sites-hosted copy.
+The generated output includes security headers, legacy URL redirects, `/robots.txt`, `/sitemap.xml`, and `/llms.txt`. After public deployment, submit `/sitemap.xml` in Search Console. This repository update does not redeploy the original Sites-hosted copy.
 
 ## Client-side API playground
 

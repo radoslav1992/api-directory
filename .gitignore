@@ -11,3 +11,5 @@ apis.json
 __pycache__/
 *.pyc
 .DS_Store
+
+.wrangler/

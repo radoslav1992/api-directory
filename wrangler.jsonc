@@ -2,5 +2,10 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "api-directory",
   "compatibility_date": "2026-10-02",
-  "assets": { "directory": "./dist", "html_handling": "force-trailing-slash", "not_found_handling": "404-page" }
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true
 }
