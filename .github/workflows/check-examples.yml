@@ -1,0 +1,43 @@
+# Calls every example request in sources/examples.json from a GitHub runner (which has open
+# internet access) and commits the results to sources/example-checks.json on the same branch.
+# Only examples that passed are published by the build. Runs on pushes to feature branches that
+# change the examples, or on demand from the Actions tab.
+name: Check example requests
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+    paths:
+      - sources/examples.json
+      - scripts/check-examples.mjs
+      - .github/workflows/check-examples.yml
+permissions:
+  contents: write
+concurrency:
+  group: check-examples-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Call every example
+        run: node scripts/check-examples.mjs
+      - name: Summarize failures
+        run: |
+          node -e '
+            const r = require("./sources/example-checks.json").results, counts = {};
+            for (const v of Object.values(r)) if (!v.ok) { const k = (v.reason || "?").replace(/redirect to .*/, "redirect").replace(/:.*/, ""); counts[k] = (counts[k] || 0) + 1; }
+            console.log(Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${n}\t${k}`).join("\n"));'
+      - name: Commit results
+        run: |
+          if [ -z "$(git status --porcelain sources/example-checks.json)" ]; then echo "No changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add sources/example-checks.json
+          git commit -m "Record example request check results"
+          git push
