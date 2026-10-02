@@ -18,7 +18,7 @@ export const categoryNotes={
  'Books & culture': 'Explore book records, museum collections, and cultural archives. Metadata access does not automatically include permission to reuse artwork or cover images.',
  'Entertainment': 'Find games, television, trivia, and character data for playful projects. Review media rights separately from endpoint access, and check how frequently a catalog is updated.'
 };
-export const categoryDescription = name => categoryNotes[name]||`Browse ${name.toLowerCase()} APIs by access requirements and source. Open a provider guide to compare authentication, documentation, and usage conditions before integrating.`;
+export const categoryDescription = name => categoryNotes[name]||`Compare ${apis.filter(a=>a.category===name).length} ${name.toLowerCase()} APIs by authentication and source. Open a guide for documentation links, usage conditions, and a playground.`;
 export const collections=[
  {slug:'docs-reviewed',title:'Documentation-reviewed APIs',description:'32 guides with provider documentation, access notes, use cases, and editable request examples.',items:reviewed},
  {slug:'no-api-key',title:'APIs with no key reported',description:'Explore APIs listed as requiring no private key. Access is source-reported for community entries; rate limits and usage terms still apply.',items:apis.filter(a=>a.auth==='No key')},
