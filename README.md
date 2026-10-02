@@ -38,7 +38,7 @@ The repository is ready for **Cloudflare Workers Builds with static assets**. Wr
 | Node build variable | `NODE_VERSION=22` (22.12 or newer) |
 | Site origin build variable | `SITE_URL=https://YOUR-PUBLIC-HOSTNAME` |
 
-Use your custom domain as `SITE_URL` if known. Otherwise use the exact `https://api-directory.<your-account-subdomain>.workers.dev` URL shown by Cloudflare. This is the public origin, **not** a GitHub URL or a `/library/` page. Add the variable to **build variables**, not just runtime variables. Workers CI fails with a clear message if it is missing, preventing accidental canonical URLs pointing at the old Sites deployment.
+Use your custom domain as `SITE_URL` if known. Otherwise use the exact `https://api-directory.<your-account-subdomain>.workers.dev` URL shown by Cloudflare. This is the public origin, **not** a GitHub URL or a `/library/` page. Add the variable to **build variables**, not just runtime variables. A bare hostname (`example.com`) is treated as `https://example.com`; anything else that is not a plain HTTPS origin stops the build with the rejected value in the error. Workers CI fails with a clear message if it is missing, preventing accidental canonical URLs pointing at the old Sites deployment.
 
 4. Save and deploy. Cloudflare installs dependencies from the lockfile, builds the Astro pages, validates the generated routes and indexing, then runs the pinned Wrangler to upload `dist/`.
 5. For a custom domain, add it under the Worker’s **Settings → Domains & Routes**, update `SITE_URL` if needed, and trigger a new build. Static metadata must be rebuilt when the origin changes.
