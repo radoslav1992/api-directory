@@ -1,0 +1,706 @@
+[
+  {
+    "slug": "radio-browser",
+    "name": "Radio Browser",
+    "category": "Music & audio",
+    "mark": "RB",
+    "color": "green",
+    "description": "Discover radio stations and stream URLs by country, language, and genre.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://docs.radio-browser.info/",
+    "endpoint": "https://de1.api.radio-browser.info/json/stations/search?countrycode=BG&hidebroken=true&limit=20",
+    "note": "Send a descriptive User-Agent from your server. Discover and rotate available mirrors in production rather than relying on one host. Check stream status and HTTPS support; a listing is not a license to rebroadcast audio.",
+    "use": "Build a Bulgarian radio station directory or a player filtered by country, language, and genre. Use url_resolved for playback and handle unavailable streams.",
+    "header": "User-Agent: MyRadioApp/1.0",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://docs.radio-browser.info/"
+      }
+    ]
+  },
+  {
+    "slug": "open-meteo",
+    "name": "Open-Meteo",
+    "category": "Weather",
+    "mark": "OM",
+    "color": "blue",
+    "description": "Global weather forecasts, historical conditions, and climate data.",
+    "auth": "No key",
+    "plan": "Noncommercial",
+    "docs": "https://open-meteo.com/en/docs",
+    "endpoint": "https://api.open-meteo.com/v1/forecast?latitude=42.70&longitude=23.32&current=temperature_2m",
+    "note": "The hosted free service is for noncommercial use, with a 10,000-call daily limit and additional limits. Commercial use requires a paid plan.",
+    "use": "Build a personal weather dashboard with current temperatures for your favorite cities.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://open-meteo.com/en/docs"
+      }
+    ]
+  },
+  {
+    "slug": "frankfurter",
+    "name": "Frankfurter",
+    "category": "Finance",
+    "mark": "fr",
+    "color": "green",
+    "description": "Currency exchange rates from institutional sources, without a signup.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://frankfurter.dev/",
+    "endpoint": "https://api.frankfurter.dev/v2/rates?base=EUR&quotes=USD",
+    "note": "Reference rates are not live trading quotes. The v2 API supports provider filtering; cache results rather than repeatedly requesting the same rates.",
+    "use": "Add a reference currency converter to a travel budget or expense tracker.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://frankfurter.dev/"
+      }
+    ]
+  },
+  {
+    "slug": "jsonplaceholder",
+    "name": "JSONPlaceholder",
+    "category": "Development",
+    "mark": "{ }",
+    "color": "yellow",
+    "description": "Fake posts, users, comments, and todos for testing your next app.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://jsonplaceholder.typicode.com/",
+    "endpoint": "https://jsonplaceholder.typicode.com/posts/1",
+    "note": "Write operations are simulated. Changes are not saved to a real database, so this is suitable for demos and tests.",
+    "use": "Practice fetching a post, displaying a loading state, and handling request errors.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://jsonplaceholder.typicode.com/"
+      }
+    ]
+  },
+  {
+    "slug": "pokeapi",
+    "name": "PokéAPI",
+    "category": "Entertainment",
+    "mark": "Pk",
+    "color": "red",
+    "description": "A detailed Pokémon database with moves, abilities, and game data.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://pokeapi.co/docs/v2",
+    "endpoint": "https://pokeapi.co/api/v2/pokemon/pikachu",
+    "note": "Cache resources and follow the fair-use policy. Access to this community API does not grant rights to Pokémon trademarks or artwork.",
+    "use": "Build a searchable Pokédex and practice combining related API resources.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://pokeapi.co/docs/v2"
+      }
+    ]
+  },
+  {
+    "slug": "rest-countries",
+    "name": "REST Countries",
+    "category": "Geography",
+    "mark": "RC",
+    "color": "violet",
+    "description": "Country names, capitals, currencies, flags, and geographic reference data.",
+    "auth": "API key",
+    "plan": "Free tier",
+    "docs": "https://restcountries.com/docs/countries",
+    "endpoint": "https://api.restcountries.com/countries/v5/names.common/Canada?pretty=1",
+    "note": "The current v5 API requires a key. Older unauthenticated v3.1 examples are deprecated. Check the provider’s current free-plan quota.",
+    "use": "Populate a country reference panel with capitals, currencies, and language information.",
+    "header": "Authorization: Bearer YOUR_API_KEY",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://restcountries.com/docs/countries"
+      }
+    ]
+  },
+  {
+    "slug": "open-library",
+    "name": "Open Library",
+    "category": "Books & culture",
+    "mark": "OL",
+    "color": "orange",
+    "description": "Search books, authors, and editions from an open library catalog.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://openlibrary.org/developers/api",
+    "endpoint": "https://openlibrary.org/search.json?q=the+hobbit&limit=5",
+    "note": "Intended for low-volume, human-facing book discovery. Cache requests; the default limit is 1 request/second. Not intended as a high-traffic commercial backend.",
+    "use": "Make a reading-list search that helps a person choose a book by title or author.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://openlibrary.org/developers/api"
+      }
+    ]
+  },
+  {
+    "slug": "dummyjson",
+    "name": "DummyJSON",
+    "category": "Development",
+    "mark": "D/",
+    "color": "blue",
+    "description": "Realistic placeholder products, carts, users, and recipes for prototypes.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://dummyjson.com/docs",
+    "endpoint": "https://dummyjson.com/products?limit=5",
+    "note": "Public resources need no key; authentication endpoints are separate. Mutations are simulated rather than permanently stored.",
+    "use": "Prototype a product grid with pagination and a working category filter.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://dummyjson.com/docs"
+      }
+    ]
+  },
+  {
+    "slug": "tvmaze",
+    "name": "TVmaze",
+    "category": "Entertainment",
+    "mark": "tv",
+    "color": "green",
+    "description": "TV shows, episodes, cast information, and broadcast schedules.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://www.tvmaze.com/api",
+    "endpoint": "https://api.tvmaze.com/search/shows?q=office",
+    "note": "The public API is separate from the premium user API. Follow attribution, share-alike licensing, and provider rate limits.",
+    "use": "Create a show finder that links from a search result to its episode guide.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.tvmaze.com/api"
+      }
+    ]
+  },
+  {
+    "slug": "rick-and-morty",
+    "name": "Rick and Morty API",
+    "category": "Entertainment",
+    "mark": "RM",
+    "color": "yellow",
+    "description": "Characters, locations, and episodes from the animated series.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://rickandmortyapi.com/documentation",
+    "endpoint": "https://rickandmortyapi.com/api/character/?name=rick",
+    "note": "Use pagination for lists. This fan project is not a license to reuse the underlying television property commercially.",
+    "use": "Practice filtering and pagination with a character explorer.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://rickandmortyapi.com/documentation"
+      }
+    ]
+  },
+  {
+    "slug": "dog-ceo",
+    "name": "Dog CEO",
+    "category": "Entertainment",
+    "mark": "dc",
+    "color": "orange",
+    "description": "Random dog photos and breed-based image collections.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://dog.ceo/dog-api/",
+    "endpoint": "https://dog.ceo/api/breeds/image/random",
+    "note": "The API returns image URLs. Check photo rights and attribution before reusing images in a commercial product.",
+    "use": "Build a small random-photo app and practice asynchronous image loading.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://dog.ceo/dog-api/"
+      }
+    ]
+  },
+  {
+    "slug": "themealdb",
+    "name": "TheMealDB",
+    "category": "Food & drink",
+    "mark": "M",
+    "color": "red",
+    "description": "Meal recipes, ingredients, and cooking instructions to explore.",
+    "auth": "Test key",
+    "plan": "Development only",
+    "docs": "https://www.themealdb.com/api.php",
+    "endpoint": "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata",
+    "note": "The shared test key 1 is for development and education. Public app-store releases require supporter access; premium filters need an upgrade.",
+    "use": "Prototype a recipe search by name and display the returned ingredient list.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.themealdb.com/api.php"
+      }
+    ]
+  },
+  {
+    "slug": "thecocktaildb",
+    "name": "TheCocktailDB",
+    "category": "Food & drink",
+    "mark": "C",
+    "color": "violet",
+    "description": "Cocktail recipes searchable by name, ingredient, and drink type.",
+    "auth": "Test key",
+    "plan": "Development only",
+    "docs": "https://www.thecocktaildb.com/api.php",
+    "endpoint": "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita",
+    "note": "The shared key 1 is a development/education test key. Public app-store releases need a production key; some endpoints are premium.",
+    "use": "Create a recipe-discovery prototype with ingredient and glass information.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.thecocktaildb.com/api.php"
+      }
+    ]
+  },
+  {
+    "slug": "art-institute",
+    "name": "Art Institute of Chicago",
+    "category": "Books & culture",
+    "mark": "Ai",
+    "color": "red",
+    "description": "Artwork metadata from the Art Institute’s public collection API.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://api.artic.edu/docs/",
+    "endpoint": "https://api.artic.edu/api/v1/artworks?limit=5",
+    "note": "Check each artwork’s public-domain status and image restrictions. API access does not mean every image is unrestricted.",
+    "use": "Build an art explorer that shows titles, artists, dates, and source links.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://api.artic.edu/docs/"
+      }
+    ]
+  },
+  {
+    "slug": "met-museum",
+    "name": "The Met Collection",
+    "category": "Books & culture",
+    "mark": "M.",
+    "color": "orange",
+    "description": "Museum departments and collection records from The Metropolitan Museum of Art.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://metmuseum.github.io/",
+    "endpoint": "https://collectionapi.metmuseum.org/public/collection/v1/departments",
+    "note": "Open Access images are identified by public-domain status. Confirm the record’s rights before displaying or distributing its images.",
+    "use": "Start with a department chooser, then let visitors explore collection objects.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://metmuseum.github.io/"
+      }
+    ]
+  },
+  {
+    "slug": "world-bank",
+    "name": "World Bank",
+    "category": "Finance",
+    "mark": "WB",
+    "color": "blue",
+    "description": "Country-level economic and development indicators for data projects.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation",
+    "endpoint": "https://api.worldbank.org/v2/country/BG/indicator/SP.POP.TOTL?format=json",
+    "note": "Indicators have different update schedules, coverage, and source notes. Use returned dates and metadata rather than treating every observation as current.",
+    "use": "Explore Bulgaria’s population history in a chart with year labels and source attribution.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/889392-about-the-indicators-api-documentation"
+      }
+    ]
+  },
+  {
+    "slug": "nasa",
+    "name": "NASA Open APIs",
+    "category": "Science",
+    "mark": "N",
+    "color": "blue",
+    "description": "Space imagery and astronomy data for educational applications.",
+    "auth": "API key",
+    "plan": "Free tier",
+    "docs": "https://api.nasa.gov/",
+    "endpoint": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY",
+    "note": "DEMO_KEY is for limited exploration; register for your own key for regular use. APOD can include third-party copyrighted media.",
+    "use": "Create an astronomy-of-the-day viewer that retains the media credit.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://api.nasa.gov/"
+      }
+    ]
+  },
+  {
+    "slug": "usgs-earthquakes",
+    "name": "USGS Earthquakes",
+    "category": "Science",
+    "mark": "US",
+    "color": "green",
+    "description": "Earthquake locations, magnitudes, and times in GeoJSON.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "endpoint": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minmagnitude=5&limit=5",
+    "note": "Use the real-time feeds for regularly refreshed displays when possible. This directory is not an emergency alerting service.",
+    "use": "Plot recent seismic events on a map with magnitude and observation time.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://earthquake.usgs.gov/fdsnws/event/1/"
+      }
+    ]
+  },
+  {
+    "slug": "weatherapi",
+    "name": "WeatherAPI.com",
+    "category": "Weather",
+    "mark": "W",
+    "color": "violet",
+    "description": "Current conditions and forecast data with location lookup.",
+    "auth": "API key",
+    "plan": "Free tier",
+    "docs": "https://www.weatherapi.com/docs/",
+    "endpoint": "https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Sofia",
+    "note": "Register for a key. Free access has plan-specific quotas and feature limits; confirm the current pricing and attribution terms before launch.",
+    "use": "Add a current-weather panel to a city guide using a server-side request.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.weatherapi.com/docs/"
+      }
+    ]
+  },
+  {
+    "slug": "alpha-vantage",
+    "name": "Alpha Vantage",
+    "category": "Finance",
+    "mark": "AV",
+    "color": "green",
+    "description": "Financial time series and market data for research applications.",
+    "auth": "API key",
+    "plan": "Free tier",
+    "docs": "https://www.alphavantage.co/documentation/",
+    "endpoint": "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=YOUR_API_KEY",
+    "note": "The standard free allowance is 25 calls/day. Premium datasets and real-time market data can require payment and additional entitlements.",
+    "use": "Practice charting historical daily prices with appropriate date and source labels.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.alphavantage.co/documentation/"
+      }
+    ]
+  },
+  {
+    "slug": "newsapi",
+    "name": "NewsAPI",
+    "category": "Entertainment",
+    "mark": "n.",
+    "color": "yellow",
+    "description": "Search news articles and headlines for a development prototype.",
+    "auth": "API key",
+    "plan": "Development only",
+    "docs": "https://newsapi.org/pricing",
+    "endpoint": "https://newsapi.org/v2/everything?q=technology&apiKey=YOUR_API_KEY",
+    "note": "The free Developer plan is development-only, with 100 requests/day and delayed articles. Staging and production require a paid subscription.",
+    "use": "Prototype a headline reader with source links; the API does not provide full article text.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://newsapi.org/pricing"
+      }
+    ]
+  },
+  {
+    "slug": "itunes-search",
+    "name": "iTunes Search",
+    "category": "Music & audio",
+    "mark": "iT",
+    "color": "violet",
+    "description": "Search podcast, music, and audiobook catalog metadata from Apple.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html",
+    "endpoint": "https://itunes.apple.com/search?term=science&media=podcast&limit=5",
+    "note": "Apple’s archived documentation describes approximately 20 calls/minute, subject to change. Cache searches and follow promotional-content terms; search access does not grant rights to reuse audio or artwork.",
+    "use": "Create a podcast discovery directory with links to each show’s publisher or store page.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html"
+      }
+    ]
+  },
+  {
+    "slug": "open-trivia-db",
+    "name": "Open Trivia DB",
+    "category": "Entertainment",
+    "mark": "Q?",
+    "color": "yellow",
+    "description": "Trivia questions with categories, difficulty levels, and multiple-choice answers.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://opentdb.com/api_config.php",
+    "endpoint": "https://opentdb.com/api.php?amount=5&type=multiple",
+    "note": "Follow the documented request interval and CC BY-SA 4.0 attribution requirements. Responses may contain HTML entities; decode them safely as text. Session tokens can reduce repeat questions.",
+    "use": "Build a themed quiz with a difficulty selector and explanations for the final score.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://opentdb.com/api_config.php"
+      }
+    ]
+  },
+  {
+    "slug": "nager-date",
+    "name": "Nager.Date",
+    "category": "Utilities",
+    "mark": "ND",
+    "color": "blue",
+    "description": "Public holiday dates and local names for country-specific calendars.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://github.com/nager/Nager.Date",
+    "endpoint": "https://nagerholidays.com/api/v3/publicholidays/2026/BG",
+    "note": "The public REST API and offline packages have different access conditions. Offline Docker and NuGet options require a license key. Verify regional coverage and observed-day rules before using dates in business scheduling.",
+    "use": "Add Bulgarian public holidays to a travel planner or team calendar.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://github.com/nager/Nager.Date"
+      }
+    ]
+  },
+  {
+    "slug": "ipify",
+    "name": "ipify",
+    "category": "Utilities",
+    "mark": "ip",
+    "color": "green",
+    "description": "Retrieve the public IP address seen by a small JSON endpoint.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://www.ipify.org/",
+    "endpoint": "https://api.ipify.org?format=json",
+    "note": "This endpoint reports the requester’s public IPv4 address, not their location. Server-side calls return the server’s address; IPv6 and dual-stack endpoints are documented separately.",
+    "use": "Build a network diagnostics page that shows the connection’s public address.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.ipify.org/"
+      }
+    ]
+  },
+  {
+    "slug": "random-user",
+    "name": "Random User",
+    "category": "Development",
+    "mark": "RU",
+    "color": "orange",
+    "description": "Generate sample user profiles for interface demos and test fixtures.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://randomuser.me/documentation",
+    "endpoint": "https://randomuser.me/api/?results=5&seed=endpoint",
+    "note": "Use the seed parameter for repeatable examples and a versioned endpoint when stability matters. These profiles are test data, not genuine customers or testimonials.",
+    "use": "Prototype a contact list with repeatable sample profiles, sorting, and pagination.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://randomuser.me/documentation"
+      }
+    ]
+  },
+  {
+    "slug": "datamuse",
+    "name": "Datamuse",
+    "category": "Language",
+    "mark": "dm",
+    "color": "violet",
+    "description": "Find rhymes, related words, spelling matches, and autocomplete suggestions.",
+    "auth": "No key",
+    "plan": "Free tier",
+    "docs": "https://www.datamuse.com/api/",
+    "endpoint": "https://api.datamuse.com/words?rel_rhy=light&max=10",
+    "note": "No key is needed until 1 January 2027, when the provider says API keys will become mandatory. The documented allowance is 100,000 requests/day. Credit Datamuse in public apps and contact the provider for customer-facing use.",
+    "use": "Build a rhyme finder or a word-game helper with meaning and spelling filters.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.datamuse.com/api/"
+      }
+    ]
+  },
+  {
+    "slug": "open-food-facts",
+    "name": "Open Food Facts",
+    "category": "Food & drink",
+    "mark": "OF",
+    "color": "green",
+    "description": "Barcode-based food product information, ingredients, and nutrition data.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://openfoodfacts.github.io/openfoodfacts-server/api/",
+    "endpoint": "https://world.openfoodfacts.org/api/v3.6/product/3274080005003.json",
+    "note": "Public reads require an identifying User-Agent; writes need authentication. Follow endpoint rate limits, attribution, and share-alike conditions. Data is community-contributed and may be incomplete. Use staging for testing.",
+    "use": "Build a barcode product lookup showing available ingredients, source links, and missing-data states.",
+    "header": "User-Agent: MyFoodApp/1.0 (contact@example.com)",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://openfoodfacts.github.io/openfoodfacts-server/api/"
+      }
+    ]
+  },
+  {
+    "slug": "gbif",
+    "name": "GBIF",
+    "category": "Science",
+    "mark": "GB",
+    "color": "green",
+    "description": "Biodiversity observations and species records from contributing datasets.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://techdocs.gbif.org/en/openapi/",
+    "endpoint": "https://api.gbif.org/v1/occurrence/search?country=BG&limit=5",
+    "note": "Most public reads do not require authentication; downloads and some operations do. Follow dataset licenses and attribution, identify your app, and handle HTTP 429. Use bulk downloads for large retrievals.",
+    "use": "Create a biodiversity explorer with Bulgarian observation locations, dates, and dataset credits.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://techdocs.gbif.org/en/openapi/"
+      }
+    ]
+  },
+  {
+    "slug": "crossref",
+    "name": "Crossref",
+    "category": "Science",
+    "mark": "CR",
+    "color": "orange",
+    "description": "Find scholarly metadata, DOI records, publication dates, and journal information.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/",
+    "endpoint": "https://api.crossref.org/works?query=bulgarian%20speech%20synthesis&rows=5",
+    "note": "No signup is needed for public metadata reads. Identify your app and use the polite pool for regular requests. Metadata completeness varies; abstracts may be copyrighted, and records do not imply access to full papers.",
+    "use": "Create a research bibliography finder that links speech-synthesis papers to their DOIs.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://www.crossref.org/documentation/retrieve-metadata/rest-api/"
+      }
+    ]
+  },
+  {
+    "slug": "sunrise-sunset",
+    "name": "Sunrise-Sunset.org",
+    "category": "Weather",
+    "mark": "SS",
+    "color": "yellow",
+    "description": "Sunrise, sunset, twilight, and day-length calculations for coordinates.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://sunrise-sunset.org/api",
+    "endpoint": "https://api.sunrise-sunset.org/json?lat=42.6977&lng=23.3219&formatted=0",
+    "note": "Attribute Sunrise-Sunset.org as requested by the provider. Parse the returned timezone information carefully; default results are in UTC. This service provides solar times, not cloud cover or weather forecasts.",
+    "use": "Add daylight times for Sofia to a photography or outdoor-trip planner.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://sunrise-sunset.org/api"
+      }
+    ]
+  },
+  {
+    "slug": "poetrydb",
+    "name": "PoetryDB",
+    "category": "Books & culture",
+    "mark": "Po",
+    "color": "red",
+    "description": "Search poems by author, title, line content, or poem length.",
+    "auth": "No key",
+    "plan": "Free access",
+    "docs": "https://github.com/thundercomb/poetrydb",
+    "endpoint": "https://poetrydb.org/title/Ozymandias/author,title,lines",
+    "note": "The service returns poems as structured text. Preserve author attribution, check rights for the intended use, and handle missing matches rather than assuming every request returns a poem.",
+    "use": "Create a poem-of-the-day reader or a literature search tool for students.",
+    "header": "",
+    "review": "reviewed",
+    "sources": [
+      {
+        "name": "Official documentation",
+        "url": "https://github.com/thundercomb/poetrydb"
+      }
+    ]
+  }
+]

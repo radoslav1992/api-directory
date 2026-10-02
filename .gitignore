@@ -1,0 +1,8 @@
+/dist/
+/catalog.json
+/apis.json
+__pycache__/
+*.pyc
+.env
+.env.*
+.DS_Store
