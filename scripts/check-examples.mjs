@@ -10,12 +10,12 @@ const previous = fs.existsSync(outFile) ? read('sources/example-checks.json').re
 const only = process.argv.slice(2);
 const slugs = Object.keys(examples).filter(s => !only.length || only.includes(s));
 const today = new Date().toISOString().slice(0, 10);
-const origin = 'https://endpoint-directory.example';
+const origin = 'https://findpublicapis.com';
 const keyed = e => /YOUR_API_KEY/.test(e.url + ' ' + (e.header || ''));
 const looksLikeKeyError = text => /\b(api[ _-]?key|apikey|access[ _-]?key|token|auth|credential|unauthori[sz]ed|forbidden|invalid key|missing key|subscription)/i.test(text);
 
 async function check(slug) {
-  const e = examples[slug], headers = { accept: 'application/json, */*;q=0.8', origin, 'user-agent': 'EndpointDirectory-ExampleCheck/1.0 (+https://github.com/radoslav1992/api-directory)' };
+  const e = examples[slug], headers = { accept: 'application/json, */*;q=0.8', origin, 'user-agent': 'FindPublicAPIs-ExampleCheck/1.0 (+https://github.com/radoslav1992/api-directory)' };
   if (e.header) { const i = e.header.indexOf(':'); headers[e.header.slice(0, i).trim().toLowerCase()] = e.header.slice(i + 1).trim(); }
   const started = Date.now();
   try {

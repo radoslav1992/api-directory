@@ -1,10 +1,8 @@
 import { defineConfig } from 'astro/config';
-// Cloudflare injects build variables here; Wrangler runtime vars do not affect static SEO.
+// Canonical URLs, the sitemap and structured data use the production domain. SITE_URL (a Cloudflare
+// build variable, not a Wrangler runtime var) overrides it, e.g. for a staging copy on another host.
 const siteUrl = (process.env.SITE_URL || '').trim().replace(/^(['"])(.*)\1$/, '$2').trim();
-if (process.env.WORKERS_CI && !siteUrl) {
-  throw new Error('Set SITE_URL in Cloudflare Settings > Builds > Variables and secrets to your public HTTPS origin (custom domain or workers.dev URL).');
-}
-const origin = siteUrl || process.env.CF_PAGES_URL || 'https://endpoint-directory.radod.chatgpt.site';
+const origin = siteUrl || 'https://findpublicapis.com';
 // Accept a bare hostname such as "example.com" by assuming HTTPS.
 const url = URL.parse(/^[a-z][a-z\d+.-]*:\/\//i.test(origin) ? origin : `https://${origin}`);
 if (!url || url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
