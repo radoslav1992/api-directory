@@ -12,10 +12,11 @@ const slugs = Object.keys(examples).filter(s => !only.length || only.includes(s)
 const today = new Date().toISOString().slice(0, 10);
 const origin = 'https://findpublicapis.com';
 const keyed = e => /YOUR_API_KEY/.test(e.url + ' ' + (e.header || ''));
-const looksLikeKeyError = text => /\b(api[ _-]?key|apikey|access[ _-]?key|token|auth|credential|unauthori[sz]ed|forbidden|invalid key|missing key|subscription)/i.test(text);
+const looksLikeKeyError = text => /(api[ _-]?key|apikey|\bkey\b|token|auth|credential|client[ _-]?id|subscri|unauthori[sz]ed|forbidden|access to this api)/i.test(text);
+const corsRejection = text => /\bcors\b|cross-origin/i.test(text);
 
-async function check(slug) {
-  const e = examples[slug], headers = { accept: 'application/json, */*;q=0.8', origin, 'user-agent': 'FindPublicAPIs-ExampleCheck/1.0 (+https://github.com/radoslav1992/api-directory)' };
+async function check(slug, withOrigin = true) {
+  const e = examples[slug], headers = { accept: 'application/json, */*;q=0.8', ...(withOrigin && { origin }), 'user-agent': 'FindPublicAPIs-ExampleCheck/1.0 (+https://github.com/radoslav1992/api-directory)' };
   if (e.header) { const i = e.header.indexOf(':'); headers[e.header.slice(0, i).trim().toLowerCase()] = e.header.slice(i + 1).trim(); }
   const started = Date.now();
   try {
@@ -23,7 +24,7 @@ async function check(slug) {
     const res = await fetch(e.url, { headers, redirect: 'manual', signal: AbortSignal.timeout(20000) });
     const type = (res.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
     const body = Buffer.from(await res.arrayBuffer()).subarray(0, 65536).toString('utf8');
-    const html = type.includes('html') || /^\s*<(!doctype html|html)/i.test(body);
+    const page = /^\s*<(!doctype html|html)/i.test(body), html = type.includes('html') || page;
     const cors = ['*', origin].includes(res.headers.get('access-control-allow-origin'));
     let ok = false, reason = '';
     if (/^Host not in allowlist/.test(body)) reason = 'blocked by the local network policy';
@@ -32,7 +33,10 @@ async function check(slug) {
       if (!body.trim() && !type.startsWith('image/')) reason = 'empty body';
       else if (html) reason = 'returned an HTML page, not data';
       else ok = true;
-    } else if (keyed(e) && !html && (res.status === 401 || ([400, 403].includes(res.status) && looksLikeKeyError(body)))) ok = true;
+    // With a placeholder key, a 401 means "key required" whatever the body; 400/403 must say so.
+    } else if (keyed(e) && (res.status === 401 || ([400, 403].includes(res.status) && !page && looksLikeKeyError(body)))) ok = true;
+    // Some APIs refuse any request carrying an Origin header: they work from servers, not browsers.
+    else if (withOrigin && res.status === 403 && corsRejection(body)) return { ...await check(slug, false), cors: false };
     else reason = 'HTTP ' + res.status;
     return { ok, status: res.status, type, cors, ms: Date.now() - started, checked: today, ...(reason && { reason }), ...(!ok && { sample: body.slice(0, 200) }) };
   } catch (error) {

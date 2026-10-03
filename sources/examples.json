@@ -19,7 +19,7 @@
   "confidence": "high"
  },
  "7timer": {
-  "url": "https://www.7timer.info/bin/api.pl?lon=113.17&lat=23.09&product=civillight&output=json",
+  "url": "https://www.7timer.info/bin/civillight.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json&tzshift=0&points=24",
   "auth": "No key",
   "use": "Show a simple 7-day weather outlook for a campsite on an outdoor trip planner.",
   "confidence": "medium"
@@ -138,7 +138,7 @@
   "confidence": "medium"
  },
  "amdoren": {
-  "url": "https://www.amdoren.com/api/currency.php?api_key=YOUR_API_KEY&from=USD&to=EUR",
+  "url": "https://amdoren.com/api/currency.php?api_key=YOUR_API_KEY&from=USD&to=EUR",
   "auth": "API key",
   "use": "Convert a USD price to EUR for international visitors on a small e-commerce site.",
   "confidence": "high"
@@ -363,7 +363,7 @@
   "confidence": "high"
  },
  "baconmockup": {
-  "url": "https://baconmockup.com/300/200",
+  "url": "https://baconmockup.com/300/200/",
   "auth": "No key",
   "use": "Fill image slots with bacon placeholder photos while prototyping a restaurant website layout.",
   "confidence": "high"
@@ -1318,7 +1318,7 @@
   "confidence": "high"
  },
  "currencyscoop": {
-  "url": "https://api.currencyscoop.com/v1/latest?api_key=YOUR_API_KEY&base=USD&symbols=EUR,GBP",
+  "url": "https://api.currencybeacon.com/v1/latest?api_key=YOUR_API_KEY&base=USD&symbols=EUR,GBP",
   "auth": "API key",
   "use": "Refresh USD to EUR and GBP rates hourly for a multi-currency pricing page.",
   "confidence": "medium"
@@ -1435,7 +1435,7 @@
   "confidence": "high"
  },
  "devitjobs": {
-  "url": "https://devitjobs.us/api/jobsLight",
+  "url": "https://devitjobs.com/api/jobsLight",
   "auth": "No key",
   "use": "Pull current US software developer job listings into a niche job board or Slack digest.",
   "confidence": "medium"
@@ -1471,7 +1471,7 @@
   "confidence": "high"
  },
  "digimon-tcg": {
-  "url": "https://digimoncard.io/api-public/search.php?n=Agumon",
+  "url": "https://digimoncard.io/api-public/search?n=Agumon",
   "auth": "No key",
   "use": "Search Digimon cards by name in a deck-building tool for the trading card game.",
   "confidence": "medium"
@@ -1495,7 +1495,7 @@
   "confidence": "high"
  },
  "disify": {
-  "url": "https://www.disify.com/api/domain/mailinator.com",
+  "url": "https://disify.com/api/domain/mailinator.com",
   "auth": "No key",
   "use": "Block signups from disposable email domains on a free-trial registration form.",
   "confidence": "medium"
@@ -1624,7 +1624,7 @@
   "confidence": "high"
  },
  "eight-ball-api": {
-  "url": "https://eightballapi.com/api?question=Will%20it%20rain%20tomorrow&lucky=false",
+  "url": "https://www.eightballapi.com/api?question=Will%20it%20rain%20tomorrow&lucky=false",
   "auth": "No key",
   "use": "Add a Magic 8-Ball reply command to a Discord bot.",
   "confidence": "medium"
@@ -1764,7 +1764,7 @@
   "confidence": "high"
  },
  "favicon-im": {
-  "url": "https://favicon.im/github.com",
+  "url": "https://a.favicon.im/github.com",
   "auth": "No key",
   "use": "Show site icons next to saved links in a bookmark manager.",
   "confidence": "medium"
@@ -2197,7 +2197,7 @@
   "confidence": "high"
  },
  "giant-bomb": {
-  "url": "https://www.giantbomb.com/api/games/?api_key=YOUR_API_KEY&format=json&filter=name:portal&limit=5",
+  "url": "https://giantbomb.com/api/games/?api_key=YOUR_API_KEY&format=json&filter=name:portal&limit=5",
   "auth": "API key",
   "use": "Show a video game's release date, platforms and summary on a game collection site.",
   "confidence": "high"
@@ -2579,7 +2579,7 @@
   "confidence": "high"
  },
  "hybrid-analysis": {
-  "url": "https://www.hybrid-analysis.com/api/v2/key/current",
+  "url": "https://hybrid-analysis.com/api/v2/key/current",
   "header": "api-key: YOUR_API_KEY",
   "auth": "API key",
   "use": "Check an API key's permissions and quota before submitting files from a malware triage script.",
@@ -3238,7 +3238,7 @@
   "confidence": "high"
  },
  "lucifer-quotes": {
-  "url": "https://lucifer-quotes.vercel.app/api/quotes",
+  "url": "https://luciferquotes.shadowdev.xyz/api/quotes",
   "auth": "No key",
   "use": "Show a random Lucifer quote in a TV fan Discord bot.",
   "confidence": "medium"
@@ -3689,7 +3689,7 @@
   "confidence": "high"
  },
  "nhl-records-and-stats": {
-  "url": "https://api-web.nhle.com/v1/standings/now",
+  "url": "https://api-web.nhle.com/v1/standings/2026-10-01",
   "auth": "No key",
   "use": "Show the current NHL standings by division on a hockey fan site.",
   "confidence": "high"
@@ -4021,7 +4021,7 @@
   "confidence": "high"
  },
  "open-government-uk": {
-  "url": "https://data.gov.uk/api/action/package_search?q=cycling&rows=5",
+  "url": "https://www.data.gov.uk/api/action/package_search?q=cycling&rows=5",
   "auth": "No key",
   "use": "Find UK government cycling datasets and their download links for a transport research tool.",
   "confidence": "medium"
@@ -4051,7 +4051,7 @@
   "confidence": "high"
  },
  "open-page-rank": {
-  "url": "https://openpagerank.com/api/v1.0/getPageRank?domains%5B0%5D=google.com&domains%5B1%5D=apple.com",
+  "url": "https://openpagerank.keywordseverywhere.com/api/v1.0/getPageRank?domains%5B0%5D=google.com&domains%5B1%5D=apple.com",
   "header": "API-OPR: YOUR_API_KEY",
   "auth": "API key",
   "use": "Compare the authority scores of competing domains in an SEO reporting spreadsheet.",
@@ -4070,7 +4070,7 @@
   "confidence": "high"
  },
  "openafrica": {
-  "url": "https://africaopendata.org/api/3/action/package_search?q=health&rows=5",
+  "url": "https://open.africa/api/3/action/package_search?q=health&rows=5",
   "auth": "No key",
   "use": "Search African open datasets by topic and link to their downloadable resources in a research portal.",
   "confidence": "medium"
@@ -4512,7 +4512,7 @@
   "confidence": "high"
  },
  "qr-code": {
-  "url": "https://qrtag.net/api/qr_4.png?url=https://www.qrtag.net",
+  "url": "https://www.qrtag.net/api/qr_4.png?url=https://www.qrtag.net",
   "auth": "No key",
   "use": "Add a scannable QR code linking to each event page on printed posters.",
   "confidence": "medium"
@@ -4524,7 +4524,7 @@
   "confidence": "high"
  },
  "qr-tag": {
-  "url": "https://qrtag.net/api/qr.png?url=https://example.com",
+  "url": "https://www.qrtag.net/api/qr.png?url=https://example.com",
   "auth": "No key",
   "use": "Print a QR code linking to each product page on shelf labels generated by an inventory app.",
   "confidence": "medium"
@@ -4989,7 +4989,7 @@
   "confidence": "high"
  },
  "shikimori": {
-  "url": "https://shikimori.one/api/animes?limit=5&order=popularity",
+  "url": "https://shikimori.io/api/animes?limit=5&order=popularity",
   "auth": "No key",
   "use": "Show the five most popular anime titles on a Russian-language anime fan site.",
   "confidence": "medium"
@@ -5221,7 +5221,7 @@
   "confidence": "high"
  },
  "stranger-things-quotes": {
-  "url": "https://strangerthings-quotes.vercel.app/api/quotes",
+  "url": "https://strangerthingsquotes.shadowdev.xyz/api/quotes",
   "auth": "No key",
   "use": "Show a random Stranger Things quote on a fan site's loading screen.",
   "confidence": "medium"
@@ -5234,7 +5234,7 @@
   "confidence": "high"
  },
  "stromberg-quotes": {
-  "url": "https://www.stromberg-api.de/api/quotes/random",
+  "url": "https://stromberg-api.de/api/quotes/random",
   "auth": "No key",
   "use": "Show a random Stromberg quote in an office chat bot.",
   "confidence": "medium"
@@ -5553,7 +5553,7 @@
   "confidence": "medium"
  },
  "transport-for-belgium": {
-  "url": "https://api.irail.be/liveboard/?station=Gent-Sint-Pieters&format=json&lang=en",
+  "url": "https://api.irail.be/v1/liveboard?station=Gent-Sint-Pieters&format=json&lang=en",
   "auth": "No key",
   "use": "Show upcoming departures and delays at a Belgian train station on a home dashboard.",
   "confidence": "high"
@@ -5927,7 +5927,7 @@
   "confidence": "high"
  },
  "vat-validation": {
-  "url": "https://vat.abstractapi.com/v1/validate?api_key=YOUR_API_KEY&vat_number=SE556656688001",
+  "url": "https://vat.abstractapi.com/v1/validate/?api_key=YOUR_API_KEY&vat_number=SE556656688001",
   "auth": "API key",
   "use": "Validate a B2B customer's VAT number and show the registered company name during invoice setup.",
   "confidence": "high"
