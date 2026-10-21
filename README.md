@@ -90,7 +90,7 @@ Run the checker from a machine with normal internet access, then commit both fil
 - Code previews hide authentication, header/query values, and request bodies by default. Explicitly reveal values before copying a credential-bearing snippet.
 - Response status, duration, byte count, exposed headers, JSON tree, formatted JSON, table, raw text, and download.
 - Cancellation, 30-second timeout, 1 MB request body limit, 2 MB response limit. Tree/table display limits keep large results usable; raw data and downloads preserve the complete response within the size limit.
-- Remote HTML is displayed as text, never executed. No third-party scripts or analytics run on the playground.
+- Remote HTML is displayed as text, never executed. Google Analytics measures page visits site-wide; the playground does not send it credentials, headers, request bodies, or responses.
 
 **Browser limitations:** Providers must permit CORS for the exact origin, method, and headers. A network error cannot reliably distinguish CORS from DNS/TLS/offline failures or blocked redirects. A failed fetch does not prove the request had no effect. Browser-controlled headers such as User-Agent and Cookie cannot be configured here. OAuth authorization/refresh flows are not implemented; paste a provider-issued, limited test access token. The receiving provider and browser extensions remain outside the directory's control.
 
